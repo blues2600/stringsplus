@@ -7,8 +7,8 @@
 #### 使用说明
 
 1.需要在C盘建立一个名为re的目录
-> 命令行 > stringsplus filename
 2.输出结果文件将会保存在re目录中
+> 命令行 > stringsplus filename
 
 #### 参与贡献
 
