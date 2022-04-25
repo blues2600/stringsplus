@@ -252,10 +252,6 @@ int isURL(const char* strings, size_t len)
 	{
 		if (strncmp(strings + i, "//", 2) == 0)
 			return 1;
-		if (strncmp(strings + i, "//", 2) == 0)
-			return 1;
-		if (strncmp(strings + i, "//", 2) == 0)
-			return 1;
 	}
 
 	return 0;
@@ -269,10 +265,6 @@ int isDirectory(const char* strings, size_t len)
 
 	for (size_t i = 0; i < len - 2; ++i)
 	{
-		if (strncmp(strings + i, "\\\\", 2) == 0)
-			return 1;
-		if (strncmp(strings + i, "\\\\", 2) == 0)
-			return 1;
 		if (strncmp(strings + i, "\\\\", 2) == 0)
 			return 1;
 	}
