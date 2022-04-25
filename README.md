@@ -6,7 +6,7 @@
 
 #### 使用说明
 
-> 命令行 > stringsplus filename
+`命令行 > stringsplus filename`
 
 #### 参与贡献
 
