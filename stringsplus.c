@@ -1,8 +1,8 @@
-
+﻿
 /**************************************************************************************
 					
-								** stringsplus简述 **
-								* 这是一个清洗字符串的工具 
+								** 简述 **
+								* 这是一个清洗字符串的工具
 
 ***************************************************************************************/
 
@@ -63,36 +63,36 @@ int main(int argc, char* argv[])
 
 															//打开待清洗的文件
 	if (fopen_s(&pfile, fileName, "r")) {
-		fprintf_s(stderr, "\ncan not open %s to read it.", string);
+		fprintf_s(stderr, "\n %s open error.\n", string);
 		exit(1);
 	}
 
 															//新建清洗后的数据文件
 	if (fopen_s(&pstringFile, string, "w+")) {
-		fprintf_s(stderr, "\ncan not open %s to create it.", fileName);
+		fprintf_s(stderr, "\n %s open error.\n", fileName);
 		exit(1);
 	}
 
 															//新建包含URL的数据文件
 	if (fopen_s(&pURLFile, URLFile, "w+")) {
-		fprintf_s(stderr, "\ncan not open %s to create it.", fileName);
+		fprintf_s(stderr, "\n %s open error.\n", fileName);
 		exit(1);
 	}
 
 															//新建包含dir的数据文件
 	if (fopen_s(&pDirFile, dirFile, "w+")) {
-		fprintf_s(stderr, "\ncan not open %s to create it.", fileName);
+		fprintf_s(stderr, "\n %s open error.\n", fileName);
 		exit(1);
 	}
 
 															//新建包含ip的数据文件
 	if (fopen_s(&pIPFile, ipFile, "w+")) {
-		fprintf_s(stderr, "\ncan not open %s to create it.", fileName);
+		fprintf_s(stderr, "\n %s open error.\n", fileName);
 		exit(1);
 	}
 
 	if (fopen_s(&pExeFile, exeFile, "w+")) {				//新建包含可执行文件的数据文件
-		fprintf_s(stderr, "\ncan not open %s to create it.", fileName);
+		fprintf_s(stderr, "\n %s open error.\n", fileName);
 		exit(1);
 	}
 
@@ -279,7 +279,6 @@ int	isIP(const char* strings, size_t len)
 			if (isdigit(strings[i - 1]) != 0 && isdigit(strings[i + 1]) != 0) {
 				i = i + 1;
 				count++;
-				continue;
 			}
 		}
 	}
