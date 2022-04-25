@@ -292,7 +292,7 @@ int	isIP(const char* strings, size_t len)
 //如果字符串中任何一个位置包含类似.exe .dll这样的可执行文件信息，那么返回1
 int	isExe(const char* strings, size_t len)
 {
-	for (size_t i = 0; i < len - 3; ++i)
+	for (size_t i = 0; i < len - 4; ++i)
 	{
 		if (strncmp(strings + i, ".exe", 4) == 0)
 			return 1;
