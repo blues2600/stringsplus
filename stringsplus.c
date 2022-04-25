@@ -10,7 +10,7 @@
 #include		<string.h>
 #include		<ctype.h>
 
-#define			MIN_LEN				6						//小于MIN_LEN的字符串会被抛弃
+#define			MIN_LEN				5						//小于MIN_LEN的字符串会被抛弃
 #define			LINE_MAX_SIZE		1512					//待清洗文件中一行的最大长度(从字符串开始到第一个换行符)
 
 
@@ -283,7 +283,7 @@ int	isIP(const char* strings, size_t len)
 		}
 	}
 
-	if (count >= 3)
+	if (count >=3)
 		return 1;
 	else
 		return 0;
