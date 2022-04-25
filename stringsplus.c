@@ -9,6 +9,7 @@
 #include		<stdio.h>
 #include		<string.h>
 #include		<ctype.h>
+#include		<stdlib.h>
 
 #define			MIN_LEN				5						//小于MIN_LEN的字符串会被抛弃
 #define			LINE_MAX_SIZE		1512					//待清洗文件中一行的最大长度(从字符串开始到第一个换行符)
@@ -118,7 +119,7 @@ int main(int argc, char* argv[])
 		if (str_len < MIN_LEN)								//字符串太小被抛弃
 			continue;
 
-		if (isURL(Line, str_len)){							//筛选的URL信息
+		if (isURL(Line, str_len)){							//筛选URL信息
 			k++;
 			if (fputs(Line, pURLFile) < 0) {					
 				fprintf_s(stderr, "\nwirte string error.");
@@ -127,7 +128,7 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
-		if (isDirectory(Line,str_len)){						//筛选的Windows路径信息
+		if (isDirectory(Line,str_len)){						//筛选Windows目录信息
 			k++;
 			if (fputs(Line, pDirFile) < 0) {				
 				fprintf_s(stderr, "\nwirte string error.");
@@ -136,7 +137,7 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
-		if (isIP(Line, str_len)) {							//筛选的IP信息
+		if (isIP(Line, str_len)) {							//筛选IP信息
 			k++;
 			if (fputs(Line, pIPFile) < 0) {					
 				fprintf_s(stderr, "\nwirte string error.");
@@ -145,7 +146,7 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
-		if (isExe(Line, str_len)) {							//筛选的可执行文件信息
+		if (isExe(Line, str_len)) {							//筛选可执行文件信息
 			k++;
 			if (fputs(Line, pExeFile) < 0) {
 				fprintf_s(stderr, "\nwirte string error.");
@@ -245,6 +246,10 @@ int isURL(const char* strings, size_t len)
 			return 1;
 		if (strncmp(strings + i, "HTTP", 4) == 0)
 			return 1;
+		if (strncmp(strings + i, "www.", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, "WWW.", 4) == 0)
+			return 1;
 	}
 
 	for (size_t i = 0; i < len - 2; ++i)
@@ -305,6 +310,12 @@ int	isExe(const char* strings, size_t len)
 		if (strncmp(strings + i, ".DLL", 4) == 0)
 			return 1;
 		if (strncmp(strings + i, ".Dll", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".sys", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".Sys", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".SYS", 4) == 0)
 			return 1;
 	}
 
