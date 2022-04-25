@@ -10,7 +10,7 @@
 1. 需要在C盘建立一个名为re的目录
 1. 输出结果文件将会保存在re目录中
 
-> 命令行 > stringsplus filename
+> 命令行 > stringsplus filename.txt
 
 #### 参与贡献
 
