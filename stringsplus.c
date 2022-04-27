@@ -25,7 +25,7 @@ int	isExe(const char* strings, size_t len);
 int main(int argc, char* argv[])
 {
 	char		fileName[120] = { '0' };
-	char		string[] = "c:\\re\\string.txt";
+	char		stringFile[] = "c:\\re\\string.txt";
 	char		URLFile[] = "c:\\re\\url.txt";
 	char		dirFile[] = "c:\\re\\dir.txt";
 	char		ipFile[] = "c:\\re\\ip.txt";
@@ -64,13 +64,13 @@ int main(int argc, char* argv[])
 
 															//打开待清洗的文件
 	if (fopen_s(&pfile, fileName, "r")) {
-		fprintf_s(stderr, "\n %s open error.\n", string);
+		fprintf_s(stderr, "\n %s open error.\n", fileName);
 		exit(1);
 	}
 
 															//新建清洗后的数据文件
-	if (fopen_s(&pstringFile, string, "w+")) {
-		fprintf_s(stderr, "\n %s open error.\n", fileName);
+	if (fopen_s(&pstringFile, stringFile, "w+")) {
+		fprintf_s(stderr, "\n %s open error.\n", stringFile);
 		exit(1);
 	}
 
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
 		fgets(Line, LINE_MAX_SIZE - 1, pfile);
 
 		str_len = strnlen_s(Line, LINE_MAX_SIZE);
-		if (str_len < MIN_LEN)								//字符串太小被抛弃
+		if (str_len < MIN_LEN + 1)							//字符串太小被抛弃
 			continue;
 
 		if (isURL(Line, str_len)){							//筛选URL信息
@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
 	}
 			
 	printf("\nstringsplus共计输出%d行信息。\n",k);
-	printf("生成文件 %s\n", string);
+	printf("生成文件 %s\n", stringFile);
 	printf("生成文件 %s\n", URLFile);
 	printf("生成文件 %s\n", dirFile);
 	printf("生成文件 %s\n", ipFile);
@@ -261,7 +261,7 @@ int isURL(const char* strings, size_t len)
 	return 0;
 }
 
-//如果字符串中的任何一个位置包含"\\“ (类似Windows路径)，那么返回1
+//如果字符串中的任何一个位置包含类似Windows路径的信息，那么返回1
 int isDirectory(const char* strings, size_t len)
 {
 	if (len < 9)
@@ -270,6 +270,8 @@ int isDirectory(const char* strings, size_t len)
 	for (size_t i = 0; i < len - 2; ++i)
 	{
 		if (strncmp(strings + i, "\\\\", 2) == 0)
+			return 1;
+		if (strncmp(strings + i, ":\\", 2) == 0)
 			return 1;
 	}
 	return 0;
