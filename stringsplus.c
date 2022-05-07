@@ -264,7 +264,7 @@ int isURL(const char* strings, size_t len)
 //如果字符串中的任何一个位置包含类似Windows路径的信息，那么返回1
 int isDirectory(const char* strings, size_t len)
 {
-	if (len < 9)
+	if (len < 5)
 		return 0;
 
 	for (size_t i = 0; i < len - 2; ++i)
