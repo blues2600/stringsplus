@@ -264,7 +264,7 @@ int isURL(const char* strings, size_t len)
 //如果字符串中的任何一个位置包含类似Windows路径的信息，那么返回1
 int isDirectory(const char* strings, size_t len)
 {
-	if (len < 5)
+	if (len < 9)
 		return 0;
 
 	for (size_t i = 0; i < len - 2; ++i)
@@ -318,6 +318,18 @@ int	isExe(const char* strings, size_t len)
 		if (strncmp(strings + i, ".Sys", 4) == 0)
 			return 1;
 		if (strncmp(strings + i, ".SYS", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".OCX", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".ocx", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".Ocx", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".COM", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".com", 4) == 0)
+			return 1;
+		if (strncmp(strings + i, ".Com", 4) == 0)
 			return 1;
 	}
 
